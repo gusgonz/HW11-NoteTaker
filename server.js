@@ -26,8 +26,11 @@ app.use(express.json());
 // These routes give our server a "map" of how to respond when users visit or request data from various URLs.
 // ================================================================================
 
+// Using this so my server also sends the css and js
+app.use(express.static("public"));
+
 // require("./routes/api")(app);
-// require("./routes/html")(app);
+require("./routes/html")(app);
 
 // =============================================================================
 // LISTENER
