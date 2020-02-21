@@ -29,7 +29,7 @@ app.use(express.json());
 // Using this so my server also sends the css and js
 app.use(express.static("public"));
 
-// require("./routes/api")(app);
+require("./routes/api")(app);
 require("./routes/html")(app);
 
 // =============================================================================
@@ -37,6 +37,11 @@ require("./routes/html")(app);
 // The below code effectively "starts" our server
 // =============================================================================
 
+
+// API GET requests
 app.listen(PORT, () => {
   console.log(`App listening on PORT: ${PORT}`);
 });
+
+// API POST request
+
