@@ -17,13 +17,13 @@ module.exports = (app) => {
 
   // POST new note
   app.post("/api/notes", (req, res) => {
+    let newNote = req.body;
 
     if (jsonData.length === 0) {
       newNote.id = 1;
     }
     else {
       let newID = jsonData[jsonData.length - 1].id + 1;
-      let newNote = req.body;
       newNote.id = newID;
     }
 
@@ -35,5 +35,14 @@ module.exports = (app) => {
     });
 
     res.json(newNote);
+  });
+
+  app.delete("/api/notes/:id", (req, res) => {
+    let deleteID = req.params.id;
+    console.log(deleteID);
+
+    delete jsonData[deleteID];
+
+    console.log(jsonData);
   });
 }

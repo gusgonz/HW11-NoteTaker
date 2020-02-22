@@ -1,12 +1,1 @@
-[
-    {
-        "id": 1,
-        "title": "Test Title",
-        "text": "Test text"
-    },
-    {
-        "title": "new",
-        "text": "test post with id",
-        "id": 2
-    }
-]
+[{"title":"test","text":"pls work","id":1},{"title":"does this work","text":"pls yes","id":2}]
