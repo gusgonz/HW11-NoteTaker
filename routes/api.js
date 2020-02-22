@@ -2,10 +2,10 @@
 // Requiring json data file from the db folder 
 
 const path = require('path');
-const jsonData = require("../db/db.json");
+const db = require("../db/db.json");
 const fs = require('fs');
 
-console.log(jsonData);
+let jsonData = db;
 
 // Routing
 module.exports = (app) => {
@@ -40,14 +40,13 @@ module.exports = (app) => {
   app.delete("/api/notes/:id", (req, res) => {
     let deleteID = req.params.id;
 
-    let newjsonData = jsonData.filter(obj => obj.id != deleteID);
+    jsonData = jsonData.filter(obj => obj.id != deleteID);
 
-    fs.writeFile(path.join(__dirname, "../db/db.json"), JSON.stringify(newjsonData), err => {
+    fs.writeFile(path.join(__dirname, "../db/db.json"), JSON.stringify(jsonData), err => {
       if (err) throw err;
       console.log('Note deleted successfully');
     });
 
     res.send('DELETE request to homepage');
-
   });
 }
