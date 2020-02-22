@@ -1,7 +1,10 @@
 // LOAD DATA
 // Requiring json data file from the db folder 
 
-const jsonData = require('../db/db.json');
+const path = require('path');
+const jsonData = require("../db/db.json");
+const fs = require('fs');
+
 
 console.log(jsonData);
 
@@ -9,7 +12,22 @@ console.log(jsonData);
 // Routing
 
 module.exports = (app) => {
-    app.get("/api/notes", function(req, res) {
-        res.json(jsonData);
-      });
+
+  // GET db data
+  app.get("/api/notes", (req, res) => {
+    res.json(jsonData);
+  });
+
+  // POST new note
+  app.post("/api/notes", (req, res) => {
+
+    jsonData.push(req.body);
+
+    fs.writeFile(path.join(__dirname, "../db/db.json"), JSON.stringify(jsonData), err => {
+      if (err) throw err;
+      console.log('New note added successfully')
+    });
+
+    res.json(req.body);
+  });
 }
