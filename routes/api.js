@@ -31,7 +31,7 @@ module.exports = (app) => {
 
     fs.writeFile(path.join(__dirname, "../db/db.json"), JSON.stringify(jsonData), err => {
       if (err) throw err;
-      console.log('New note added successfully')
+      console.log('New note added successfully');
     });
 
     res.json(newNote);
@@ -39,10 +39,15 @@ module.exports = (app) => {
 
   app.delete("/api/notes/:id", (req, res) => {
     let deleteID = req.params.id;
-    console.log(deleteID);
 
-    delete jsonData[deleteID];
+    let newjsonData = jsonData.filter(obj => obj.id != deleteID);
 
-    console.log(jsonData);
+    fs.writeFile(path.join(__dirname, "../db/db.json"), JSON.stringify(newjsonData), err => {
+      if (err) throw err;
+      console.log('Note deleted successfully');
+    });
+
+    res.send('DELETE request to homepage');
+
   });
 }
