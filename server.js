@@ -16,32 +16,27 @@ const app = express();
 // Sets an initial port. We"ll use this later in our listener
 const PORT = process.env.PORT || 6969;
 
-// Sets up the Express app to handle data parsing
+// Sets up the Express app to handle data parsing and so my server also sends the css and js
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static("public"));
 
 // ================================================================================
 // ROUTER
-// The below points our server to a series of "route" files.
-// These routes give our server a "map" of how to respond when users visit or request data from various URLs.
+// The below points our server to a series of imported "route" files.
 // ================================================================================
 
-// Using this so my server also sends the css and js
-app.use(express.static("public"));
-
+// api routes
 require("./routes/api")(app);
+// html routes
 require("./routes/html")(app);
 
 // =============================================================================
 // LISTENER
 // The below code effectively "starts" our server
 // =============================================================================
-
-
-// API GET requests
 app.listen(PORT, () => {
   console.log(`App listening on PORT: ${PORT}`);
 });
 
-// API POST request
 
