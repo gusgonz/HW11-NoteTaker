@@ -10,7 +10,7 @@ Just download the project repo and run 'npm i'
 
 This is your note taker! 
 
-To Use:
+To Use: Run "node server.js" to start the application
 
 - To view a note, click on the note title in the sidebar on the left hand side.
 
