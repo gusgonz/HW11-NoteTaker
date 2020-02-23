@@ -6,6 +6,8 @@ An application that can be used to write, save, and delete notes.]
 
 Just download the project repo and run 'npm i'
 
+Deployed apps: https://fierce-escarpment-37985.herokuapp.com/
+
 ## Usage 
 
 This is your note taker! 
